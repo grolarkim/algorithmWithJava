@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class BOJ_15651_NM3 {
+public class BOJ_15652_NM4 {
 	public static int N;
 	public static int M;
 	public static int[] arr;
@@ -20,12 +20,12 @@ public class BOJ_15651_NM3 {
 
 		arr = new int[M];
 
-		dfs(0);
+		dfs(1, 0);
 		System.out.println(sb);
 
 	}
 
-	public static void dfs(int depth) {
+	public static void dfs(int now, int depth) {
 		if (depth == M) {
 			for (int i : arr) {
 				sb.append(i).append(' ');
@@ -34,10 +34,9 @@ public class BOJ_15651_NM3 {
 			return;
 		}
 
-		for (int i = 1; i <= N; i++) {
+		for (int i = now; i <= N; i++) {
 			arr[depth] = i;
-			dfs(depth+1);
+			dfs(i, depth+1);
 		}
 	}
 }
-
