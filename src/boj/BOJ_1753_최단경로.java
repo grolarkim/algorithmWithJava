@@ -16,9 +16,9 @@ public class BOJ_1753_최단경로 {
 		int V = Integer.parseInt(st.nextToken());
 		int E = Integer.parseInt(st.nextToken());
 		int start = Integer.parseInt(br.readLine());
-		ArrayList<Edge>[] arr = new ArrayList[V + 1];
+		ArrayList<Edge1753>[] arr = new ArrayList[V + 1];
 		for (int i = 0; i <= V; i++) {
-			arr[i] = new ArrayList<Edge>();
+			arr[i] = new ArrayList<Edge1753>();
 		}
 		for (int i = 1; i <= E; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -26,27 +26,27 @@ public class BOJ_1753_최단경로 {
 			int y = Integer.parseInt(st.nextToken());
 			int w = Integer.parseInt(st.nextToken());
 
-			arr[x].add(new Edge(y, w));
+			arr[x].add(new Edge1753(y, w));
 		}
 
 		int[] distance = new int[V + 1];
 		Arrays.fill(distance, Integer.MAX_VALUE);
 
 		distance[start] = 0;
-		PriorityQueue<Edge> q = new PriorityQueue<>();
+		PriorityQueue<Edge1753> q = new PriorityQueue<>();
 
-		q.offer(new Edge(start, 0));
+		q.offer(new Edge1753(start, 0));
 
 		while (!q.isEmpty()) {
-			Edge e = q.poll();
+			Edge1753 e = q.poll();
 
 			if (distance[e.y] < e.w)
 				continue;
 
-			for (Edge ne : arr[e.y]) {
+			for (Edge1753 ne : arr[e.y]) {
 				if (distance[ne.y] > ne.w + e.w) {
 					distance[ne.y] = ne.w + e.w;
-					q.offer(new Edge(ne.y, e.w + ne.w));
+					q.offer(new Edge1753(ne.y, e.w + ne.w));
 				}
 			}
 
@@ -66,18 +66,18 @@ public class BOJ_1753_최단경로 {
 	}
 }
 
-class Edge implements Comparable<Edge> {
+class Edge1753 implements Comparable<Edge1753> {
 	public int y;
 	public int w;
 
-	public Edge(int y, int w) {
+	public Edge1753(int y, int w) {
 		super();
 		this.y = y;
 		this.w = w;
 	}
 
 	@Override
-	public int compareTo(Edge o) {
+	public int compareTo(Edge1753 o) {
 		return Integer.compare(this.w, o.w);
 	}
 
