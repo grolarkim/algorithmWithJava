@@ -1,64 +1,57 @@
 package swea;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class SWEA_1979_어디에단어가들어갈수있을까 {
-	public static int cntRow(int K, int[][] crossWord) {
-		int cnt = 0;
-		for(int i=0;i<crossWord.length;i++) {
-			int stack = 0;
-			for(int j=0;j<crossWord.length;j++) {
-				if(crossWord[i][j]==1) {
-					stack+=1;
-				} else {
-					if(stack==K) {
-						cnt+=1;
-					}
-					stack = 0;
-				}
-			}
-			if(stack==K) {
-				cnt+=1;
-			}
-		}
-		return cnt;
-	}
-	
-	public static int cntColumn(int K, int[][] crossWord) {
-		int cnt = 0;
-		for(int i=0;i<crossWord.length;i++) {
-			int stack = 0;
-			for(int j=0;j<crossWord.length;j++) {
-				if(crossWord[j][i]==1) {
-					stack+=1;
-				} else {
-					if(stack==K) {
-						cnt+=1;
-					}
-					stack = 0;
-				}
-			}
-			if(stack==K) {
-				cnt+=1;
-			}
-		}
-		return cnt;
-	}
-
 	public static void main(String[] args) throws Exception {
-		Scanner sc = new Scanner(System.in);
-		int T;
-		T=sc.nextInt();
-		for(int test_case = 1; test_case <= T; test_case++) {
-			int N = sc.nextInt();
-			int K = sc.nextInt();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int T = Integer.parseInt(br.readLine());
+		StringTokenizer st;
+		for (int test_case = 1; test_case <= T; test_case++) {
+			st = new StringTokenizer(br.readLine());
+			int N = Integer.parseInt(st.nextToken());
+			int K = Integer.parseInt(st.nextToken());
 			int[][] crossWord = new int[N][N];
-			for(int i=0;i<N;i++) {
-				for(int j=0;j<N;j++) {
-					crossWord[i][j] = sc.nextInt();
+			for (int i = 0; i < N; i++) {
+				st = new StringTokenizer(br.readLine());
+				for (int j = 0; j < N; j++) {
+					crossWord[i][j] = Integer.parseInt(st.nextToken());
 				}
 			}
-			System.out.println("#"+test_case+" "+(cntRow(K,crossWord)+cntColumn(K, crossWord)));
+			int cntr = 0;
+			int cntc = 0;
+			for (int i = 0; i < N; i++) {
+				int stackr = 0;
+				int stackc = 0;
+				for (int j = 0; j < N; j++) {
+					if(crossWord[i][j]==1) {
+						stackr++;
+					} else if(stackr==K) {
+						cntr++;
+						stackr=0;
+					} else {
+						stackr=0;
+					}
+					if(crossWord[j][i]==1) {
+						stackc++;
+					} else if(stackc==K) {
+						cntc++;
+						stackc=0;
+					} else {
+						stackc=0;
+					}
+				}
+				if(stackr==K) {
+					cntr++;
+				}
+				if(stackc==K) {
+					cntc++;
+				}
+			}
+			System.out.printf("#%d %d", test_case, cntr+cntc).println();
+
 		}
 	}
 }
