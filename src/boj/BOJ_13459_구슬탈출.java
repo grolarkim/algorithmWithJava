@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class BOJ_13460_구슬탈출2 {
+public class BOJ_13459_구슬탈출 {
 	static int N, M;
 	static char[][] map;
 	static int rx, ry, bx, by, ox, oy;
@@ -42,7 +42,7 @@ public class BOJ_13460_구슬탈출2 {
 
 		bfs();
 
-		System.out.println(min == Integer.MAX_VALUE ? -1 : min);
+		System.out.println(min == Integer.MAX_VALUE ? 0 : 1);
 
 	}
 
