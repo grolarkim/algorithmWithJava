@@ -50,20 +50,20 @@ public class BOJ_16236_아기상어 {
 		while (true) {
 			boolean find = false;
 			int minDis = Integer.MAX_VALUE;
-			
+
 			while (!q.isEmpty()) {
 				Node cur = q.poll();
 				int r = cur.x;
 				int c = cur.y;
 				int distance = cur.distance;
-				if(minDis < distance) {
+				if (minDis < distance) {
 					break;
 				}
 				if (map[r][c] != 0 && map[r][c] < size) {
 					fishes.offer(cur);
 					minDis = Math.min(distance, minDis);
 					find = true;
-					
+
 				} else {
 					for (int i = 0; i < 4; i++) {
 						if (r + dr[i] >= 0 && r + dr[i] < N && c + dc[i] >= 0 && c + dc[i] < N
@@ -74,7 +74,7 @@ public class BOJ_16236_아기상어 {
 					}
 				}
 			}
-			if(fishes.isEmpty()) {
+			if (fishes.isEmpty()) {
 				break;
 			}
 			Node fish = fishes.poll();
@@ -91,7 +91,7 @@ public class BOJ_16236_아기상어 {
 			}
 			map[x][y] = 0;
 			visited = new boolean[N][N];
-			if(!find) {
+			if (!find) {
 				break;
 			}
 
@@ -99,26 +99,25 @@ public class BOJ_16236_아기상어 {
 
 	}
 
-}
+	static class Node implements Comparable<Node> {
+		int x;
+		int y;
+		int distance;
 
-class Node implements Comparable<Node> {
-	int x;
-	int y;
-	int distance;
+		Node(int x, int y, int distance) {
+			super();
+			this.x = x;
+			this.y = y;
+			this.distance = distance;
+		}
 
-	Node(int x, int y, int distance) {
-		super();
-		this.x = x;
-		this.y = y;
-		this.distance = distance;
-	}
-
-	@Override
-	public int compareTo(Node o) {
-		if (this.x != o.x) {
-			return (this.x < o.x) ? -1 : 1;
-		} else {
-			return (this.y < o.y) ? -1 : 1;
+		@Override
+		public int compareTo(Node o) {
+			if (this.x != o.x) {
+				return (this.x < o.x) ? -1 : 1;
+			} else {
+				return (this.y < o.y) ? -1 : 1;
+			}
 		}
 	}
 }
