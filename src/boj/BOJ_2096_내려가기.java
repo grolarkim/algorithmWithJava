@@ -39,7 +39,7 @@ public class BOJ_2096_내려가기 {
 		}
 		int max = Math.max(maxDp[N - 1][0], Math.max(maxDp[N - 1][1], maxDp[N - 1][2]));
 		int min = Math.min(minDp[N - 1][0], Math.min(minDp[N - 1][1], minDp[N - 1][2]));
-		
+
 		System.out.println(max + " " + min);
 
 	}
